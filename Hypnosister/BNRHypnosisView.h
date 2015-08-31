@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BNRHypnosisView.h
 //  Hypnosister
 //
 //  Created by Andrew Yau on 30/08/2015.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BNRHypnosisView : UIView
 
 @end
-
