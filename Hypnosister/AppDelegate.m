@@ -20,11 +20,11 @@
     
                    
     //CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    CGRect firstFrame = self.window.bounds;
+    /*CGRect firstFrame = self.window.bounds;
     BNRHypnosisView *firstView = [[BNRHypnosisView alloc]  initWithFrame:firstFrame];
     firstView.backgroundColor = [UIColor whiteColor];
     
-    [self.window addSubview:firstView];
+    [self.window addSubview:firstView];*/
     
     /*CGRect secondFrame = CGRectMake(20, 30, 50, 50);
     
@@ -33,7 +33,40 @@
     
     [firstView addSubview:secondView];*/
     
-    //self.window.backgroundColor = [UIColor clearColor];
+    // Create CGRects for frames
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 3.0;
+    //bigRect.size.height *= 2.0;
+    
+    // Create a screen-sized scroll view and add it to the window
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    scrollView.pagingEnabled = YES;
+    [self.window addSubview:scrollView];
+    
+    // Create a super-sized hypnosis view and add it to the scroll view
+    //BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:bigRect];
+    //[scrollView addSubview:hypnosisView];
+    
+    
+    // Create a screen-sized hypnosis view and add it to the scroll view
+    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:hypnosisView];
+    
+    // Add a second screen-sized hypnosis view just off screen to the right
+    screenRect.origin.x += screenRect.size.width;
+    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:anotherView];
+    
+    // Add a second screen-sized hypnosis view just off screen to the right
+    screenRect.origin.x += screenRect.size.width;
+    BNRHypnosisView *anotherView2 = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:anotherView2];
+    
+    // Tell the scroll view how big its content area is
+    scrollView.contentSize = bigRect.size;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
